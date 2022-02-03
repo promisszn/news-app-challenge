@@ -2,7 +2,7 @@
   <div class="container news">
     <!-- Loading Animation -->
     <Loading v-if="loading" />
-    
+
     <!-- Search -->
     <div class="search">
       <input
@@ -59,7 +59,7 @@ export default {
     },
     async getArticles() {
       const data = axios.get(
-        `https://newsapi.org/v2/top-headlines?country=ng&apiKey=d0f979965a074eb2afd14c8b3e490301`
+        `https://newsapi.org/v2/top-headlines?country=ng&pageSize=50&apiKey=d0f979965a074eb2afd14c8b3e490301`
       );
       const result = await data;
       console.log(result.data.articles);
@@ -102,20 +102,21 @@ export default {
 
     async searchArticles() {
       this.loading = true;
-      const data = axios.get(
-        `https://newsapi.org/v2/everything?q=${this.searchInput}&apiKey=d0f979965a074eb2afd14c8b3e490301`
-      );
-      const result = await data;
-
-      console.log(result.data.articles);
-      if (result.status == 200) {
-        this.articles = [];
-        result.data.articles.forEach((article) => {
-          this.articles.push(article);
-        });
-        this.loading = false;
+      
+      if (this.searchInput == "") {
+        this.clearSearch();
       } else {
-        console.log("error");
+        const searchedArticles = [];
+        this.articles.map((article) => {
+          if (
+            article.title.toLowerCase().includes(this.searchInput.toLowerCase())
+          ) {
+            searchedArticles.push(article);
+          }
+        });
+        this.articles = [];
+        this.articles = searchedArticles;
+        this.loading = false;
       }
     },
     clearSearch() {

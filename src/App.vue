@@ -70,12 +70,7 @@ export default {
   color: black;
 }
 
-.link-light {
-  color: #fff;
-}
-
-button,
-.router-button {
+button {
   transition: 500ms ease all;
   cursor: pointer;
   margin-top: 24px;
@@ -84,7 +79,6 @@ button,
   color: #fff;
   border-radius: 20px;
   border: none;
-  /* text-transform: uppercase; */
 }
 
 .error {
