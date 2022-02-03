@@ -144,7 +144,7 @@ export default {
   padding: 32px 16px;
 }
 .news .search input {
-  max-width: 450px;
+  max-width: 350px;
   width: 100%;
   padding: 12px 6px;
   font-size: 14px;
