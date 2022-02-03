@@ -1,5 +1,5 @@
 <template>
-  <div class="container news">
+  <div class="news">
     <!-- Loading Animation -->
     <Loading v-if="loading" />
 
@@ -26,6 +26,7 @@
         </div>
       </article>
     </div>
+    <div v-if="results">No Results Found</div>
   </div>
 </template>
 
@@ -46,6 +47,7 @@ export default {
       articles: [],
       searchInput: "",
       loading: null,
+      results: null,
     };
   },
 
@@ -92,10 +94,12 @@ export default {
             title: doc.data().title,
           };
           this.articles.push(data);
+          this.results = false;
           this.loading = false;
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
+          this.results = true;
         }
       });
     },
@@ -112,6 +116,8 @@ export default {
             article.title.toLowerCase().includes(this.searchInput.toLowerCase())
           ) {
             searchedArticles.push(article);
+          } else {
+            this.results = true;
           }
         });
         this.articles = [];
@@ -131,6 +137,7 @@ export default {
 <style scoped>
 .news {
   background: #80808040;
+  min-height: 100vh;
 }
 .news .search {
   display: flex;
