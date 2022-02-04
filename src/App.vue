@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     checkRoute() {
-      if(this.$route.name === 'Login' || this.$route.name === 'SignUp' || this.$route.name === 'ForgotPassword') {
+      if(this.$route.name === 'Login' || this.$route.name === 'SignUp') {
         this.navigation = true;
         return;   
       }

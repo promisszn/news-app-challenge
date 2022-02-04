@@ -59,6 +59,7 @@ export default {
     navTo(url) {
       window.open(url);
     },
+
     async getArticles() {
       const data = axios.get(
         `https://newsapi.org/v2/top-headlines?country=ng&pageSize=50&apiKey=d0f979965a074eb2afd14c8b3e490301`
@@ -125,6 +126,7 @@ export default {
         this.loading = false;
       }
     },
+    
     clearSearch() {
       this.searchInput = "";
       this.articles = [];
